@@ -1,0 +1,79 @@
+{
+  "name": "jspp-library",
+  "version": "1.0.0",
+  "description": "providing additional features for every JavaScript ecosystem with zero-cost principle.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": {
+      "import": "./dist/*.mjs",
+      "require": "./dist/*.js",
+      "types": "./dist/*.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "tsup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uocazizah/jspp-library.git"
+  },
+  "keywords": [
+    "keyword1",
+    "keyword2"
+  ],
+  "author": "Uoc Azizah <uoctamika.codeberg.org@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uocazizah/jspp-library/issues"
+  },
+  "homepage": "https://github.com/uocazizah/jspp-library#readme",
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "prettier": "^3.9.5",
+    "tsup": "^8.5.1",
+    "typescript": "^7.0.0",
+    "vitest": "^4.1.10"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "dts": true,
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true
+  },
+  "allowScripts": {
+    "esbuild@0.27.7": true
+  }
+}
