@@ -62,7 +62,7 @@
   },
   "tsup": {
     "entry": [
-      "src/index.ts"
+      "index.ts"
     ],
     "format": [
       "cjs",
