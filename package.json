@@ -50,8 +50,6 @@
     "@types/node": "^26.1.1",
     "@vitest/coverage-v8": "^4.1.10",
     "prettier": "^3.9.5",
-    "rollup-plugin-dts": "^6.4.1",
-    "tsup": "^8.5.1",
     "typescript": "^5.9.3",
     "vitest": "^4.1.10"
   },
@@ -60,8 +58,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "allowScripts": {
-    "esbuild@0.27.7": true
   }
 }
