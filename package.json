@@ -2,19 +2,19 @@
   "name": "jspp-library",
   "version": "1.0.0",
   "description": "providing additional features for every JavaScript ecosystem with zero-cost principle.",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/cjs/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "types": "./dist/cjs/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     },
     "./*": {
-      "types": "./dist/*.d.ts",
-      "import": "./dist/*.mjs",
-      "require": "./dist/*.js"
+      "types": "./dist/cjs/*.d.ts",
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js"
     }
   },
   "files": [
@@ -23,14 +23,15 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup --config tsup.config.ts",
-    "build:watch": "tsup --watch",
-    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
+    "build:watch": "tsc -p tsconfig.cjs.json --watch & tsc -p tsconfig.esm.json --watch",
+    "dev": "npm run build:watch",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "tsup"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
