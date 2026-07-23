@@ -26,8 +26,6 @@ jobs:
           - 22.x
           - 21.x
           - 20.x
-          - 19.x
-          - 18.x
 
     steps:
       - name: Checkout repository
