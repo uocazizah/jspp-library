@@ -25,9 +25,9 @@
   "scripts": {
     "clean": "rm -rf dist",
     "clean:test": "rm -rf dist/test",
-    "build": "npm run clean && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
-    "build:watch": "tsc -p tsconfig.cjs.json --watch & tsc -p tsconfig.esm.json --watch",
-    "build:test": "tsc -p tsconfig.test.json",
+    "build": "npm run clean && npx tsc -p tsconfig.cjs.json && npx tsc -p tsconfig.esm.json",
+    "build:watch": "npx tsc -p tsconfig.cjs.json --watch & npx tsc -p tsconfig.esm.json --watch",
+    "build:test": "npx tsc -p tsconfig.test.json",
     "pretest": "npm run build:test",
     "test": "node dist/test/test/printf.test.js",
     "posttest": "npm run clean:test",
@@ -50,7 +50,7 @@
   "devDependencies": {
     "@types/node": "^26.1.1",
     "prettier": "^3.9.5",
-    "typescript": "^7.0.2"
+    "typescript": "^5.9.2"
   },
   "engines": {
     "node": ">=9"
