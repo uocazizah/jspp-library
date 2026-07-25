@@ -27,6 +27,7 @@ After each major release, the previous version enters our LTS phase. During this
 2. Upgrade to the newest major release to get the latest improvements.
 
 Extended Custom Support
+
 Even after our official LTS window ends, your project isn't left behind. You can reach out to Uoc Azizah directly via email (see the Author section below) to request:
 
 · Security patches or bug fixes for older versions.
