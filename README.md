@@ -16,9 +16,11 @@ The project focuses on providing lightweight, modular, and efficient utilities w
 ### Compatibility
 
 Release Schedule
+
 We release a new major version every 6 months. Unlike traditional SemVer, our major releases are non-breaking for existing legacy codebases. Instead, they serve as vehicle for critical security patches, particularly because we proactively backport fixes for EOL (End-of-Life) Node.js versions that are no longer officially supported by the Node.js foundation.
 
 LTS (Long-Term Support)
+
 After each major release, the previous version enters our LTS phase. During this period, it is considered highly stable and production-ready. You have two clear options:
 
 1. Stay on the current LTS version for maximum stability.
