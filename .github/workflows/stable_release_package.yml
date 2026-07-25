@@ -91,7 +91,7 @@ jobs:
 
       - name: Generate SBOM
         if: steps.check.outputs.exists == 'false'
-        run: npm sbom
+        run: npm sbom --sbom-format spdx --sbom-type library sbom.spdx.json
 
       - name: Publish Stable
         if: |
