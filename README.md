@@ -31,6 +31,7 @@ Extended Custom Support
 Even after our official LTS window ends, your project isn't left behind. You can reach out to Uoc Azizah directly via email (see the Author section below) to request:
 
 · Security patches or bug fixes for older versions.
+
 · Note: For new features, please always upgrade to the latest version.
 
 **Package**
