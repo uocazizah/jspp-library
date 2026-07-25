@@ -15,10 +15,19 @@ The project focuses on providing lightweight, modular, and efficient utilities w
 
 ### Compatibility
 
+jspp-library have own schedule for updates, 
+every 6 month we release major version, the major version do not break something legacy codebase use.
+major version on this package are security updates, because we offer supporting EOL (End-Of-Live) Node.js, we often add own security patch.
+
+after the major version release, last major now up to LTS (Long-Term-Support) and already really stable.
+after LTS, you have 2 options rather update to new major or stay in one major.
+even we are already leave LTS, you can contact me (Uoc Azizah) using email to request security patch or fix bug (see Author on end of README.md), for features request please use latest updates!
+
+
 **Package**
 | Version  | Status      | Release Date |
 |----------|-------------|--------------|
-| 1.0.x    | none        | none         |
+| 1.0.x    | stable      | Jul 25, 2026 |
 
 **Node.js that Support our package**
 | Node.js  | Status     |
@@ -34,6 +43,10 @@ The project focuses on providing lightweight, modular, and efficient utilities w
 | 18.x     | Supported  |
 | 17.x     | Supported  |
 | 16.x     | Planing    |
+
+### Documentation
+
+Please go to [docs/](https://github.com/uocazizah/jspp-library) directory in our repository!
 
 ### Contributing
 
