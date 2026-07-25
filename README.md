@@ -15,14 +15,20 @@ The project focuses on providing lightweight, modular, and efficient utilities w
 
 ### Compatibility
 
-jspp-library have own schedule for updates, 
-every 6 month we release major version, the major version do not break something legacy codebase use.
-major version on this package are security updates, because we offer supporting EOL (End-Of-Live) Node.js, we often add own security patch.
+Release Schedule
+We release a new major version every 6 months. Unlike traditional SemVer, our major releases are non-breaking for existing legacy codebases. Instead, they serve as vehicle for critical security patches, particularly because we proactively backport fixes for EOL (End-of-Life) Node.js versions that are no longer officially supported by the Node.js foundation.
 
-after the major version release, last major now up to LTS (Long-Term-Support) and already really stable.
-after LTS, you have 2 options rather update to new major or stay in one major.
-even we are already leave LTS, you can contact me (Uoc Azizah) using email to request security patch or fix bug (see Author on end of README.md), for features request please use latest updates!
+LTS (Long-Term Support)
+After each major release, the previous version enters our LTS phase. During this period, it is considered highly stable and production-ready. You have two clear options:
 
+1. Stay on the current LTS version for maximum stability.
+2. Upgrade to the newest major release to get the latest improvements.
+
+Extended Custom Support
+Even after our official LTS window ends, your project isn't left behind. You can reach out to Uoc Azizah directly via email (see the Author section below) to request:
+
+· Security patches or bug fixes for older versions.
+· Note: For new features, please always upgrade to the latest version.
 
 **Package**
 | Version  | Status      | Release Date |
