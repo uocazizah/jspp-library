@@ -1,0 +1,106 @@
+NAME
+       printf, sprintf - format and print strings using C-style format specifiers
+
+SYNOPSIS
+       ECMAScript Module (ESM)
+
+           import std from 'jspp-library';
+
+           std.printf("Hello %s!\n", "World");
+
+           const str = std.sprintf("Value: %d", 42);
+           console.log(str);
+
+       CommonJS (CJS)
+
+           const std = require('jspp-library');
+
+           std.printf("Hello %s!\n", "World");
+
+           const str = std.sprintf("Value: %d", 42);
+           console.log(str);
+
+DESCRIPTION
+       The sprintf() function formats a string using C-style conversion
+       specifiers and returns the formatted result.
+
+       The printf() function formats a string using sprintf() and writes
+       the result directly to process.stdout without appending a newline.
+
+FORMAT SPECIFIERS
+       %s      String.
+
+       %d
+       %i      Signed integer using parseInt().
+
+       %f      Floating-point number using parseFloat().
+
+       %o
+       %O      Object formatted using util.inspect().
+
+       %j      JSON representation using JSON.stringify(). If the object
+               contains circular references, "[Circular]" is returned.
+
+       %b      Boolean value ("true" or "false").
+
+       %%      Outputs a literal '%' character.
+
+RETURN VALUE
+       sprintf()
+              Returns the formatted string.
+
+       printf()
+              Returns no value (void).
+
+EXAMPLES
+       Basic string formatting
+
+           sprintf("Hello %s!", "World")
+           => "Hello World!"
+
+       Integer formatting
+
+           sprintf("%d + %d = %d", 10, 20, 30)
+           => "10 + 20 = 30"
+
+       Floating-point formatting
+
+           sprintf("PI = %f", 3.14159)
+           => "PI = 3.14159"
+
+       Boolean formatting
+
+           sprintf("Enabled: %b", true)
+           => "Enabled: true"
+
+       Object formatting
+
+           sprintf("%o", { name: "Alice", age: 20 })
+           => "{ name: 'Alice', age: 20 }"
+
+       JSON formatting
+
+           sprintf("%j", { x: 1, y: 2 })
+           => "{\"x\":1,\"y\":2}"
+
+       Literal percent
+
+           sprintf("Progress: 100%%")
+           => "Progress: 100%"
+
+       Writing to stdout
+
+           printf("Hello %s!\n", "World");
+
+NOTES
+       • Unsupported format specifiers are copied to the output unchanged.
+
+       • Missing arguments leave their original format specifier unchanged.
+
+       • Extra arguments are ignored.
+
+       • Object formatting uses util.inspect() with unlimited depth and
+         disabled ANSI colours.
+
+       • Unlike the C standard library, width, precision, alignment,
+         flags, and length modifiers are not supported.
