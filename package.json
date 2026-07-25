@@ -40,7 +40,15 @@
     "type": "git",
     "url": "git+https://github.com/uocazizah/jspp-library.git"
   },
-  "keywords": ["keyword1", "keyword2"],
+  "keywords": [
+    "library",
+    "js",
+    "ts",
+    "commonJS",
+    "cjs",
+    "esm",
+    "older-node"
+  ],
   "author": "Uoc Azizah <uoctamika.codeberg.org@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -49,7 +57,6 @@
   "homepage": "https://github.com/uocazizah/jspp-library#readme",
   "devDependencies": {
     "@types/node": "^26.1.1",
-    "prettier": "^3.9.5",
     "typescript": "^5.9.2"
   },
   "engines": {
