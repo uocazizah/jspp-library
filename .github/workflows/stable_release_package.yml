@@ -108,7 +108,7 @@ jobs:
           (github.ref_name == 'canary' || github.event_name == 'schedule') &&
           steps.check.outputs.exists == 'false'
         run: |
-          npm stage publish \
+          npm publish \
             --tag canary \
             --access public \
             --provenance
