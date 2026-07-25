@@ -22,7 +22,7 @@ concurrency:
 
 jobs:
   publish:
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -98,7 +98,7 @@ jobs:
           github.ref_name == 'master' &&
           steps.check.outputs.exists == 'false'
         run: |
-          npm publish \
+          npm stage publish \
             --tag latest \
             --access public \
             --provenance
@@ -108,7 +108,7 @@ jobs:
           (github.ref_name == 'canary' || github.event_name == 'schedule') &&
           steps.check.outputs.exists == 'false'
         run: |
-          npm publish \
+          npm stage publish \
             --tag canary \
             --access public \
             --provenance
