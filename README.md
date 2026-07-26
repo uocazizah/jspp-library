@@ -15,24 +15,66 @@ The project focuses on providing lightweight, modular, and efficient utilities w
 
 ### Compatibility
 
+This project follows a compatibility-first development model. Maintaining long-term stability across multiple Node.js releases is one of the primary goals of this package. New releases are carefully designed to preserve existing behaviour whenever technically feasible while continuing to deliver security updates, bug fixes, and performance improvements.
+
+Unlike many npm packages that only support the latest Active LTS releases, this package also aims to remain compatible with older Node.js versions whenever practical. Compatibility work is continuously evaluated based on runtime limitations, maintenance cost, and available APIs.
+
+
 Release Schedule
 
-We release a new major version every 6 months. Unlike traditional SemVer, our major releases are non-breaking for existing legacy codebases. Instead, they serve as vehicle for critical security patches, particularly because we proactively backport fixes for EOL (End-of-Life) Node.js versions that are no longer officially supported by the Node.js foundation.
+A new **major version** is planned approximately every **6 months**.
 
-LTS (Long-Term Support)
+Although version numbers follow Semantic Versioning (SemVer), major releases are **not intended to introduce unnecessary breaking changes**. Instead, major versions primarily serve as milestones for:
 
-After each major release, the previous version enters our LTS phase. During this period, it is considered highly stable and production-ready. You have two clear options:
+- Long-term maintenance planning.
+- Security improvements.
+- Internal refactoring.
+- Performance optimisations.
+- Compatibility updates for current and legacy Node.js releases.
+- Deprecation of obsolete internal implementations when required.
 
-1. Stay on the current LTS version for maximum stability.
-2. Upgrade to the newest major release to get the latest improvements.
+Whenever a breaking change becomes unavoidable, it will be clearly documented in the release notes together with migration guidance.
 
-Extended Custom Support
 
-Even after our official LTS window ends, your project isn't left behind. You can reach out to Uoc Azizah directly via email (see the Author section below) to request:
+Long-Term Support (LTS)
 
-· Security patches or bug fixes for older versions.
+After each new major release becomes stable, the previous major version enters the **Long-Term Support (LTS)** phase.
 
-· Note: For new features, please always upgrade to the latest version.
+During LTS, only maintenance updates are provided, including:
+
+- Security patches.
+- Critical bug fixes.
+- Compatibility fixes.
+- Documentation corrections.
+
+No new features are added to LTS releases in order to maximise production stability.
+
+You may choose either of the following approaches:
+
+1. Remain on the latest LTS release for maximum stability.
+2. Upgrade to the newest major version to receive new features and ongoing improvements.
+
+Extended Maintenance
+
+Projects running older versions are not immediately abandoned after the official LTS period ends.
+
+Extended maintenance may be available upon request by contacting the package maintainer (see the **Author** section).
+
+Depending on feasibility, the following may be provided:
+
+- Security patches.
+- Critical bug fixes.
+- Compatibility fixes for supported Node.js environments.
+
+The following are **not** included in extended maintenance:
+
+- New features.
+- API redesigns.
+- Behavioural changes.
+- Performance enhancements unrelated to security or correctness.
+
+Feature development always targets the latest stable major release.
+
 
 **Package**
 | Version  | Status           | Release Date |
@@ -55,6 +97,28 @@ Even after our official LTS window ends, your project isn't left behind. You can
 | 16.x     | Work In Progress |
 | 15.x     | Planning         |
 | 14.x     | Planning         |
+
+
+Versioning
+
+Version numbers follow Semantic Versioning (SemVer) with a compatibility-focused interpretation.
+
+- Patch releases (`x.y.Z`)
+  - Bug fixes.
+  - Security fixes.
+  - Documentation updates.
+
+- Minor releases (`x.Y.z`)
+  - New backwards-compatible features.
+  - Performance improvements.
+  - Additional APIs.
+
+- Major releases (`X.y.z`)
+  - Long-term maintenance milestone.
+  - Internal architectural improvements.
+  - Security baseline updates.
+  - Compatibility refresh across supported Node.js versions.
+  - Breaking changes only when absolutely necessary.
 
 ### Documentation
 
