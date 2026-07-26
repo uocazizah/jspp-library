@@ -79,7 +79,7 @@ Feature development always targets the latest stable major release.
 **Package**
 | Version  | Status           | Release Date |
 |----------|------------------|--------------|
-| 1.x.x    | Work In Progress | Jul 25, 2026 |
+| 1.x.x    | Current          | Jul 25, 2026 |
 
 **Node.js that Support our package**
 | Node.js  | Status           |
