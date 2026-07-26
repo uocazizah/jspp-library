@@ -1,149 +1,114 @@
 name: Publish Package
 
-on:
-  push:
-    branches:
-      - master
-
-  schedule:
-    # Publish canary setiap 3 jam
-    - cron: "0 */3 * * *"
-
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  id-token: write
-
-concurrency:
-  group: npm-publish
-  cancel-in-progress: false
-
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-
-    steps:
-      # Checkout
-      - name: Checkout (master)
-        if: github.event_name == 'push'
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      - name: Checkout (canary)
-        if: github.event_name != 'push'
-        uses: actions/checkout@v7
-        with:
-          ref: canary
-          fetch-depth: 0
-
-      # Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 26
-          registry-url: https://registry.npmjs.org
-          package-manager-cache: false
-
-      # Install
-      - name: Install dependencies
-        run: npm ci
-
-      # Test
-      - name: Run tests
-        run: npm test
-
-      # Build
-      - name: Build package
-        run: npm run build
-
-      # Generate Canary Version
-      - name: Prepare Canary Version
-        if: github.event_name != 'push'
-        shell: bash
-        run: |
-          PACKAGE_NAME=$(node -p "require('./package.json').name")
-          BASE_VERSION=$(node -p "require('./package.json').version.split('-')[0]")
-
-          INDEX=1
-
-          while npm view "${PACKAGE_NAME}@${BASE_VERSION}-canary.${INDEX}" version >/dev/null 2>&1
-          do
-            INDEX=$((INDEX + 1))
-          done
-
-          node <<EOF
-          const fs = require('fs');
-
-          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-
-          pkg.version = '${BASE_VERSION}-canary.${INDEX}';
-
-          fs.writeFileSync(
-            'package.json',
-            JSON.stringify(pkg, null, 2) + '\n'
-          );
-
-          console.log("Publishing:", pkg.version);
-          EOF
-
-      # Read package metadata
-      - name: Read package metadata
-        id: pkg
-        shell: bash
-        run: |
-          echo "name=$(node -p "require('./package.json').name")" >> "$GITHUB_OUTPUT"
-          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
-
-      # Check npm version
-      - name: Check existing npm version
-        id: check
-        shell: bash
-        run: |
-          if npm view "${{ steps.pkg.outputs.name }}@${{ steps.pkg.outputs.version }}" version >/dev/null 2>&1
-          then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-            echo "Version already exists on npm."
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      # Generate SBOM
-      - name: Generate SBOM
-        if: steps.check.outputs.exists == 'false'
-        run: |
-          npm sbom \
-            --sbom-format spdx \
-            --sbom-type library \
-            > sbom.spdx.json
-
-      # Upload SBOM
-      - name: Upload SBOM
-        if: steps.check.outputs.exists == 'false'
-        uses: actions/upload-artifact@v4
-        with:
-          name: sbom-${{ steps.pkg.outputs.version }}
-          path: sbom.spdx.json
-
-      # Publish Stable
-      - name: Publish Stable
-        if: |
-          github.event_name == 'push' &&
-          steps.check.outputs.exists == 'false'
-        run: |
-          npm stage publish \
-            --tag latest \
-            --access public \
-            --provenance
-
-      # Publish Canary
-      - name: Publish Canary
-        if: |
-          github.event_name != 'push' &&
-          steps.check.outputs.exists == 'false'
-        run: |
-          npm publish \
-            --tag canary \
-            --access public \
-            --provenance
+on:      
+  push:      
+    branches:      
+      - master      
+      - canary      
+      
+  schedule:      
+    # Publish canary setiap 6 jam      
+    - cron: "0 */6 * * *"      
+      
+  workflow_dispatch:      
+      
+permissions:      
+  contents: read      
+  id-token: write      
+      
+concurrency:      
+  group: npm-publish      
+  cancel-in-progress: false      
+      
+jobs:      
+  publish:      
+    runs-on: ubuntu-latest      
+      
+    steps:      
+      - name: Checkout      
+        uses: actions/checkout@v7      
+        with:      
+          ref: ${{ github.event_name == 'schedule' && 'canary' || github.ref_name }}      
+          fetch-depth: 0      
+      
+      - name: Setup Node.js      
+        uses: actions/setup-node@v7      
+        with:      
+          node-version: 26      
+          registry-url: https://registry.npmjs.org      
+          package-manager-cache: false      
+      
+      - name: Install dependencies      
+        run: npm ci      
+      
+      - name: Run tests      
+        run: npm test      
+      
+      - name: Build package      
+        run: npm run build      
+      
+      # Menghasilkan versi canary unik      
+      - name: Prepare Canary Version      
+        if: github.ref_name == 'canary' || github.event_name == 'schedule'      
+        shell: bash      
+        run: |      
+          node <<'EOF'      
+          const fs = require('fs');      
+      
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));      
+      
+          // Hilangkan suffix prerelease jika ada      
+          const base = pkg.version.split('-')[0];      
+      
+          pkg.version = `${base}-canary.${process.env.GITHUB_RUN_NUMBER}`;      
+      
+          fs.writeFileSync(      
+            'package.json',      
+            JSON.stringify(pkg, null, 2) + '\n'      
+          );      
+      
+          console.log("Canary Version:", pkg.version);      
+          EOF      
+      
+      - name: Read package metadata      
+        id: pkg      
+        shell: bash      
+        run: |      
+          echo "name=$(node -p "require('./package.json').name")" >> "$GITHUB_OUTPUT"      
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"      
+      
+      - name: Check existing npm version      
+        id: check      
+        shell: bash      
+        run: |      
+          if npm view "${{ steps.pkg.outputs.name }}@${{ steps.pkg.outputs.version }}" version >/dev/null 2>&1      
+          then      
+            echo "exists=true" >> "$GITHUB_OUTPUT"      
+            echo "Version already exists."      
+          else      
+            echo "exists=false" >> "$GITHUB_OUTPUT"      
+          fi      
+      
+      - name: Generate SBOM      
+        if: steps.check.outputs.exists == 'false'      
+        run: npm sbom --sbom-format spdx --sbom-type library sbom.spdx.json      
+      
+      - name: Publish Stable      
+        if: |      
+          github.ref_name == 'master' &&      
+          steps.check.outputs.exists == 'false'      
+        run: |      
+          npm stage publish \      
+            --tag latest \      
+            --access public \      
+            --provenance      
+      
+      - name: Publish Canary      
+        if: |      
+          (github.ref_name == 'canary' || github.event_name == 'schedule') &&      
+          steps.check.outputs.exists == 'false'      
+        run: |      
+          npm publish \      
+            --tag canary \      
+            --access public \      
+            --provenance      
