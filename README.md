@@ -35,24 +35,26 @@ Even after our official LTS window ends, your project isn't left behind. You can
 · Note: For new features, please always upgrade to the latest version.
 
 **Package**
-| Version  | Status      | Release Date |
-|----------|-------------|--------------|
-| 1.0.x    | stable      | Jul 25, 2026 |
+| Version  | Status           | Release Date |
+|----------|------------------|--------------|
+| 1.x.x    | Work In Progress | Jul 25, 2026 |
 
 **Node.js that Support our package**
-| Node.js  | Status     |
-|----------|------------|
-| 26.x     | Supported  |
-| 25.x     | Supported  |
-| 24.x     | Supported  |
-| 23.x     | Supported  |
-| 22.x     | Supported  |
-| 21.x     | Supported  |
-| 20.x     | Supported  |
-| 19.x     | Supported  |
-| 18.x     | Supported  |
-| 17.x     | Supported  |
-| 16.x     | Planing    |
+| Node.js  | Status           |
+|----------|------------------|
+| 26.x     | Supported        |
+| 25.x     | Supported        |
+| 24.x     | Supported        |
+| 23.x     | Supported        |
+| 22.x     | Supported        |
+| 21.x     | Supported        |
+| 20.x     | Supported        |
+| 19.x     | Supported        |
+| 18.x     | Supported        |
+| 17.x     | Supported        |
+| 16.x     | Work In Progress |
+| 15.x     | Planning         |
+| 14.x     | Planning         |
 
 ### Documentation
 
