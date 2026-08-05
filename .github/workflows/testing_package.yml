@@ -7,8 +7,38 @@ on:
   pull_request:
 
 jobs:
-  test-package:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26.x
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      - name: Build tests
+        run: npm run build:test
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist
+          if-no-files-found: error
+
+  test:
     name: ${{ matrix.os }} / Node ${{ matrix.node-version }}
+    needs: build
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -37,15 +67,15 @@ jobs:
           - os: ubuntu-latest
             node-version: 17.x
 
-          # Ubuntu 26.04 ARM64 (preview, only use current for now)
+          # Ubuntu ARM64
           - os: ubuntu-26.04-arm
             node-version: 26.x
 
-          # Windows (Current only)
+          # Windows
           - os: windows-latest
             node-version: 26.x
 
-          # macOS (Current only)
+          # macOS
           - os: macos-latest
             node-version: 26.x
 
@@ -58,11 +88,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Download build artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
 
-      - name: Build
-        run: npm run build
-
-      - name: Tests
+      - name: Run tests
         run: npm test
