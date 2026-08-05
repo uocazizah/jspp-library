@@ -42,12 +42,12 @@ jobs:
         run: npm ci
 
       # Run the test suite.
-      - name: Run tests
-        run: npm test
+      - name: Run build
+        run: npm run build && npm run build:test
 
       # Build the package before publishing.
-      - name: Build package
-        run: npm run build
+      - name: Run tests
+        run: npm run test
 
       # Generate a unique canary version using the GitHub run number.
       - name: Prepare Canary Version
