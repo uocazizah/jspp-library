@@ -82,9 +82,9 @@ Feature development always targets the latest stable major release.
 
 
 **Package**
-| Version  | Status           | Release Date |
-|----------|------------------|--------------|
-| 1.x.x    | Current          | Jul 25, 2026 |
+| Version  | Status           | Release Date | Code Name |
+|----------|------------------|--------------|-----------|
+| 1.x.x    | Current          | Jul 25, 2026 | Yani      |
 
 
 **Node.js that Support our package**
