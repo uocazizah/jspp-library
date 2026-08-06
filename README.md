@@ -15,6 +15,9 @@ The project focuses on providing lightweight, modular, and efficient utilities w
 
 ### Compatibility
 
+<details>
+<summary>Read more about compatibility</summary>
+
 This project follows a compatibility-first development model. Maintaining long-term stability across multiple Node.js releases is one of the primary goals of this package. New releases are carefully designed to preserve existing behaviour whenever technically feasible while continuing to deliver security updates, bug fixes, and performance improvements.
 
 Unlike many npm packages that only support the latest Active LTS releases, this package also aims to remain compatible with older Node.js versions whenever practical. Compatibility work is continuously evaluated based on runtime limitations, maintenance cost, and available APIs.
@@ -75,11 +78,14 @@ The following are **not** included in extended maintenance:
 
 Feature development always targets the latest stable major release.
 
+</details>
+
 
 **Package**
 | Version  | Status           | Release Date |
 |----------|------------------|--------------|
 | 1.x.x    | Current          | Jul 25, 2026 |
+
 
 **Node.js that Support our package**
 | Node.js  | Status           |
@@ -98,6 +104,10 @@ Feature development always targets the latest stable major release.
 | 15.x     | Planning         |
 | 14.x     | Planning         |
 
+
+<details>
+
+<summary>Read more about versioning</summary>
 
 Versioning
 
@@ -119,6 +129,8 @@ Version numbers follow Semantic Versioning (SemVer) with a compatibility-focused
   - Security baseline updates.
   - Compatibility refresh across supported Node.js versions.
   - Breaking changes only when absolutely necessary.
+
+</details>
 
 ### Documentation
 
