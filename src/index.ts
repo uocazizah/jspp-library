@@ -1,5 +1,8 @@
-import * as std from './io/printf';
+export * from "./internal/warning/warning_flags";
 
-export * from './io/printf';
+import { printf, sprintf } from "./io/printf";
 
-export default std;
+export const std = {
+	printf,
+	sprintf,
+};
