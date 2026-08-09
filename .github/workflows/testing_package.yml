@@ -71,11 +71,15 @@ jobs:
           - os: ubuntu-26.04-arm
             node-version: 26.x
 
-          # Windows
+          # Windows x86_64
           - os: windows-latest
             node-version: 26.x
 
-          # macOS
+          # Windows ARM64
+          - os: windows-11-vs2026-arm
+            node-version: 26.x
+
+          # macOS ARM64
           - os: macos-latest
             node-version: 26.x
 

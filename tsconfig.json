@@ -1,16 +1,19 @@
 {
-	"compilerOptions": {
-		"target": "ES2017",
-		"strict": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"declaration": true,
-		"declarationMap": true,
-		"sourceMap": true,
-		"resolveJsonModule": true,
-		"forceConsistentCasingInFileNames": true,
-		"types": ["node"]
-	},
-	"include": ["index.ts", "src/**/*"],
-	"exclude": ["node_modules", "dist"]
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2017"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "isolatedDeclarations": true,   // ← ubah menjadi false
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "types": ["node"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
