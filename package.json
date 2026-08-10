@@ -2,19 +2,20 @@
   "name": "jspp-library",
   "version": "1.1.2",
   "description": "providing additional features for every JavaScript ecosystem with zero-cost principle.",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/cjs/index.d.ts",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/cjs/index.d.cts",
   "exports": {
     ".": {
-      "types": "./dist/cjs/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "types": "./dist/cjs/index.d.cts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs"
     },
     "./*": {
-      "types": "./dist/cjs/*.d.ts",
-      "import": "./dist/esm/*.js",
-      "require": "./dist/cjs/*.js"
+      "types": "./dist/cjs/*.d.cts",
+      "import": "./dist/esm/*.mjs",
+      "require": "./dist/cjs/*.cjs"
     }
   },
   "files": [
@@ -25,8 +26,8 @@
   "scripts": {
     "clean": "rm -rf dist",
     "clean:test": "rm -rf dist/test",
-    "build": "npm run clean && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
-    "build:watch": "tsc -p tsconfig.cjs.json --watch & tsc -p tsconfig.esm.json --watch",
+    "build": "tsdown",
+    "build:watch": "tsdown --watch",
     "build:test": "tsc -p tsconfig.test.json",
     "test": "node dist/test/test/printf.test.js",
     "test:build": "npm run build:test && npm test",
@@ -35,7 +36,6 @@
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build",
-
     "biome:format": "biome format --write .",
     "biome:lint": "biome lint .",
     "biome:check": "biome check --apply .",
@@ -64,6 +64,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.7",
     "@types/node": "^26.1.1",
+    "tsdown": "^0.22.14",
     "typescript": "^7.0.2"
   },
   "engines": {
